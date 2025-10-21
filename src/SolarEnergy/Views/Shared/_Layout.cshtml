@@ -34,6 +34,19 @@
                                     <i class="fas fa-tachometer-alt me-1"></i>Dashboard
                                 </a>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    <i class="fas fa-th-large me-1"></i>Plataforma
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" asp-controller="Home" asp-action="Leads"><i class="fas fa-users me-2"></i>Leads</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Home" asp-action="AdminDashboard"><i class="fas fa-shield-alt me-2"></i>Admin</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Home" asp-action="Simulation"><i class="fas fa-calculator me-2"></i>Simulador</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Home" asp-action="Evaluations"><i class="fas fa-star-half-alt me-2"></i>Avaliações</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Home" asp-action="CompanyPanel"><i class="fas fa-building me-2"></i>Painel da Empresa</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Home" asp-action="UserDashboard"><i class="fas fa-user-astronaut me-2"></i>Dashboard Usuário</a></li>
+                                </ul>
+                            </li>
                         }
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="About">
