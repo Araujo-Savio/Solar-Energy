@@ -1,0 +1,160 @@
+@model SolarEnergy.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Cadastro";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro - Solar Energy</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="auth-body">
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <!-- Left side - Solar Energy Information -->
+            <div class="col-lg-6 d-none d-lg-flex bg-solar-gradient align-items-center justify-content-center text-white">
+                <div class="text-center px-4">
+                    <div class="mb-4">
+                        <i class="fas fa-solar-panel fa-3x text-solar-orange mb-3"></i>
+                        <h2 class="fw-bold">SOLAR ENERGY</h2>
+                        <p class="lead">Energia limpa para um futuro sustentável</p>
+                    </div>
+                    
+                    <div class="features-list text-start">
+                        <div class="feature-item mb-3">
+                            <i class="fas fa-leaf text-solar-orange me-3"></i>
+                            <span>Reduza sua conta de energia em até 95%</span>
+                        </div>
+                        <div class="feature-item mb-3">
+                            <i class="fas fa-globe text-solar-orange me-3"></i>
+                            <span>Contribua para um planeta mais verde</span>
+                        </div>
+                        <div class="feature-item mb-3">
+                            <i class="fas fa-home text-solar-orange me-3"></i>
+                            <span>Valorize seu imóvel</span>
+                        </div>
+                        <div class="feature-item mb-3">
+                            <i class="fas fa-battery-full text-solar-orange me-3"></i>
+                            <span>Independência energética</span>
+                        </div>
+                        <div class="feature-item mb-3">
+                            <i class="fas fa-chart-line text-solar-orange me-3"></i>
+                            <span>Retorno do investimento garantido</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right side - Registration Form -->
+            <div class="col-lg-6 d-flex align-items-center justify-content-center py-4">
+                <div class="auth-form-container w-100 max-width-500">
+                    <div class="text-center mb-4 d-lg-none">
+                        <i class="fas fa-solar-panel fa-2x text-solar-orange mb-2"></i>
+                        <h3>SOLAR ENERGY</h3>
+                    </div>
+                    
+                    <div class="card shadow-lg border-0">
+                        <div class="card-body p-4">
+                            <h3 class="card-title text-center mb-1 fw-bold">Criar Conta</h3>
+                            <p class="text-center text-muted mb-4">Preencha os dados para começar sua jornada solar</p>
+                            
+                            <!-- User Type Selection -->
+                            <div class="mb-4">
+                                <div class="btn-group w-100" role="group">
+                                    <input type="radio" class="btn-check" name="userTypeOptions" id="btnConsumidor" value="@((int)SolarEnergy.Models.UserType.Client)" checked>
+                                    <label class="btn btn-outline-solar-orange" for="btnConsumidor">CONSUMIDOR</label>
+                                    
+                                    <input type="radio" class="btn-check" name="userTypeOptions" id="btnEmpresa" value="@((int)SolarEnergy.Models.UserType.Company)">
+                                    <label class="btn btn-outline-solar-orange" for="btnEmpresa">EMPRESA</label>
+                                </div>
+                            </div>
+                            
+                            <form asp-action="Register" method="post" id="registerForm">
+                                <div asp-validation-summary="All" class="text-danger mb-3"></div>
+                                <input asp-for="UserType" type="hidden" id="userTypeHidden" value="@((int)SolarEnergy.Models.UserType.Client)" />
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label asp-for="FullName" class="form-label fw-semibold">Nome Completo</label>
+                                        <input asp-for="FullName" class="form-control" placeholder="Seu nome completo" />
+                                        <span asp-validation-for="FullName" class="text-danger small"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label asp-for="CPF" class="form-label fw-semibold">CPF</label>
+                                        <input asp-for="CPF" class="form-control" placeholder="000.000.000-00" maxlength="14" />
+                                        <span asp-validation-for="CPF" class="text-danger small"></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label asp-for="Email" class="form-label fw-semibold">E-mail</label>
+                                        <input asp-for="Email" class="form-control" placeholder="seu@email.com" />
+                                        <span asp-validation-for="Email" class="text-danger small"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label asp-for="Phone" class="form-label fw-semibold">Telefone</label>
+                                        <input asp-for="Phone" class="form-control" placeholder="(00) 00000-0000" />
+                                        <span asp-validation-for="Phone" class="text-danger small"></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label asp-for="Password" class="form-label fw-semibold">Senha</label>
+                                        <input asp-for="Password" class="form-control" placeholder="Mínimo 8 caracteres" />
+                                        <span asp-validation-for="Password" class="text-danger small"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label asp-for="ConfirmPassword" class="form-label fw-semibold">Confirmar Senha</label>
+                                        <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirme a senha" />
+                                        <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input asp-for="AcceptTerms" class="form-check-input" />
+                                        <label asp-for="AcceptTerms" class="form-check-label small">
+                                            Li e concordo com os <a href="#" class="text-solar-orange">Termos de Uso</a> e a 
+                                            <a href="#" class="text-solar-orange">Política de Privacidade</a>
+                                        </label>
+                                    </div>
+                                    <span asp-validation-for="AcceptTerms" class="text-danger small"></span>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-solar-orange w-100 fw-semibold py-2 mb-3">
+                                    <i class="fas fa-user-plus me-2"></i>CRIAR CONTA
+                                </button>
+                            </form>
+                            
+                            <div class="text-center">
+                                <p class="mb-0">Já tem uma conta? 
+                                    <a asp-action="Login" class="text-solar-orange text-decoration-none fw-semibold">Fazer Login</a>
+                                </p>
+                                <div class="mt-3">
+                                    <a asp-controller="Home" asp-action="Index" class="text-muted text-decoration-none small">
+                                        <i class="fas fa-arrow-left me-1"></i>Voltar ao início
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/register.js"></script>
+</body>
+</html>

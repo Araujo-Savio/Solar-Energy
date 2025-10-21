@@ -1,0 +1,476 @@
+/* ========================================
+   Solar Energy - Cores baseadas na logo oficial
+   ======================================== */
+
+:root {
+  /* Cores extraídas da logo */
+  --solar-blue-primary: #1a2b3d;      /* Azul escuro da logo */
+  --solar-blue-secondary: #2c4a6b;     /* Azul médio da logo */
+  --solar-blue-gradient: linear-gradient(135deg, #1a2b3d 0%, #2c4a6b 50%, #3d5a7a 100%);
+  --solar-orange: #ff6b35;             /* Laranja principal da logo */
+  --solar-orange-dark: #e55722;        /* Laranja escuro */
+  --solar-orange-light: #ff8555;       /* Laranja claro */
+  --solar-white: #ffffff;              /* Branco puro */
+  --solar-black: #0f1419;              /* Preto da logo */
+  --solar-gray: #6b7280;
+  --solar-gray-light: #f8fafc;
+  --solar-gray-dark: #374151;
+  
+  /* Gradientes inspirados na logo */
+  --solar-gradient: linear-gradient(135deg, #1a2b3d 0%, #2c4a6b 50%, #3d5a7a 100%);
+  --solar-gradient-reverse: linear-gradient(135deg, #3d5a7a 0%, #2c4a6b 50%, #1a2b3d 100%);
+  --solar-gradient-subtle: linear-gradient(135deg, #1a2b3d 0%, rgba(28, 43, 61, 0.95) 100%);
+}
+
+html {
+  font-size: 14px;
+  scroll-behavior: smooth;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  margin-bottom: 60px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--solar-gray-dark);
+}
+
+/* ========================================
+   Classes de cores personalizadas
+   ======================================== */
+
+.bg-solar-blue { background-color: var(--solar-blue-primary) !important; }
+.bg-solar-blue-secondary { background-color: var(--solar-blue-secondary) !important; }
+.bg-solar-orange { background-color: var(--solar-orange) !important; }
+.bg-solar-gradient { background: var(--solar-gradient) !important; }
+.bg-solar-black { background-color: var(--solar-black) !important; }
+
+.text-solar-blue { color: var(--solar-blue-primary) !important; }
+.text-solar-orange { color: var(--solar-orange) !important; }
+.text-solar-white { color: var(--solar-white) !important; }
+.text-solar-black { color: var(--solar-black) !important; }
+
+.border-solar-blue { border-color: var(--solar-blue-primary) !important; }
+.border-solar-orange { border-color: var(--solar-orange) !important; }
+
+/* ========================================
+   Botões personalizados (baseados na logo)
+   ======================================== */
+
+.btn-solar-orange {
+  background: linear-gradient(135deg, var(--solar-orange) 0%, var(--solar-orange-dark) 100%);
+  border: none;
+  color: var(--solar-white);
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-solar-orange::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-solar-orange:hover::before {
+  left: 100%;
+}
+
+.btn-solar-orange:hover {
+  background: linear-gradient(135deg, var(--solar-orange-dark) 0%, var(--solar-orange) 100%);
+  color: var(--solar-white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+}
+
+.btn-outline-solar-orange {
+  border: 2px solid var(--solar-orange);
+  color: var(--solar-orange);
+  background: transparent;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-outline-solar-orange:hover {
+  background: var(--solar-orange);
+  border-color: var(--solar-orange);
+  color: var(--solar-white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem var(--solar-orange);
+}
+
+/* ========================================
+   Navegação (inspirada na logo)
+   ======================================== */
+
+.navbar {
+  background: var(--solar-gradient) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.95);
+  transition: all 0.3s ease;
+  font-weight: 500;
+  position: relative;
+}
+
+.navbar-dark .navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--solar-orange);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover::after {
+  width: 80%;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: var(--solar-orange);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--solar-white) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================
+   Páginas de Autenticação (tema da logo)
+   ======================================== */
+
+.auth-body {
+  min-height: 100vh;
+  background: var(--solar-gradient);
+  position: relative;
+}
+
+.auth-body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+}
+
+.auth-form-container {
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.max-width-400 { max-width: 400px !important; }
+.max-width-500 { max-width: 500px !important; }
+
+.card {
+  border: none;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 40px rgba(15, 20, 25, 0.3);
+}
+
+.input-group-text {
+  background: linear-gradient(135deg, var(--solar-gray-light) 0%, #ffffff 100%);
+  border-color: #e2e8f0;
+  color: var(--solar-blue-primary);
+}
+
+.form-control {
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: var(--solar-orange);
+  box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.25);
+  background: #ffffff;
+}
+
+.features-list .feature-item {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+
+/* ========================================
+   Homepage (inspirada na textura da logo)
+   ======================================== */
+
+.hero-section {
+  min-height: 85vh;
+  background: var(--solar-gradient);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="solar-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23solar-pattern)"/></svg>');
+  opacity: 0.6;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.min-vh-75 { min-height: 75vh; }
+
+.service-card {
+  transition: all 0.4s ease;
+  border-radius: 20px;
+  border: none;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 4px 20px rgba(26, 43, 61, 0.1);
+}
+
+.service-card:hover {
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(26, 43, 61, 0.2);
+  background: linear-gradient(135deg, #ffffff 0%, var(--solar-orange) 100%);
+  color: var(--solar-white);
+}
+
+.service-card:hover .text-solar-blue,
+.service-card:hover .text-solar-orange {
+  color: var(--solar-white) !important;
+}
+
+/* ========================================
+   Stats Section
+   ======================================== */
+
+.stats-section {
+  background: linear-gradient(135deg, var(--solar-gray-light) 0%, #ffffff 100%);
+}
+
+.stat-item {
+  text-align: center;
+  padding: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+}
+
+/* ========================================
+   Seções com gradiente
+   ======================================== */
+
+.cta-section {
+  background: var(--solar-gradient) !important;
+  position: relative;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="cta-pattern" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><polygon points="15,5 25,20 5,20" fill="rgba(255,107,53,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23cta-pattern)"/></svg>');
+  opacity: 0.3;
+}
+
+/* ========================================
+   Footer (tema da logo)
+   ======================================== */
+
+footer {
+  background: var(--solar-gradient) !important;
+  border-top: 3px solid var(--solar-orange);
+}
+
+footer .social-links a {
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+footer .social-links a:hover {
+  color: var(--solar-orange) !important;
+  transform: translateY(-3px) scale(1.1);
+}
+
+/* ========================================
+   Steps/Process (estilo da logo)
+   ======================================== */
+
+.step-number {
+  width: 70px;
+  height: 70px;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, var(--solar-orange) 0%, var(--solar-orange-dark) 100%);
+  border: 3px solid var(--solar-white);
+  box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+}
+
+/* ========================================
+   Alertas e notificações
+   ======================================== */
+
+.alert {
+  border: none;
+  border-radius: 12px;
+  border-left: 4px solid;
+}
+
+.alert-success {
+  background: linear-gradient(135deg, #d1fae5 0%, #ecfdf5 100%);
+  border-left-color: #10b981;
+  color: var(--solar-black);
+}
+
+.alert-danger {
+  background: linear-gradient(135deg, #fee2e2 0%, #fef2f2 100%);
+  border-left-color: #ef4444;
+  color: var(--solar-black);
+}
+
+.alert-info {
+  background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+  border-left-color: var(--solar-blue-secondary);
+  color: var(--solar-black);
+}
+
+.alert-warning {
+  background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+  border-left-color: var(--solar-orange);
+  color: var(--solar-black);
+}
+
+/* ========================================
+   Responsividade
+   ======================================== */
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 70vh;
+    text-align: center;
+  }
+  
+  .display-3 {
+    font-size: 2.5rem;
+  }
+  
+  .lead {
+    font-size: 1.1rem;
+  }
+  
+  .hero-buttons .btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+/* ========================================
+   Animações e efeitos
+   ======================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.pulse-on-hover:hover {
+  animation: pulse 2s infinite;
+}
+
+
+/* ========================================
+   Utilitários (baseados na logo)
+   ======================================== */
+
+.fa-10x { font-size: 10em; }
+.opacity-75 { opacity: 0.75; }
+.text-decoration-none { text-decoration: none; }
+
+/* Seleção de tipo de usuário com tema da logo */
+.btn-check:checked + .btn-outline-solar-orange {
+  background: linear-gradient(135deg, var(--solar-orange) 0%, var(--solar-orange-dark) 100%);
+  border-color: var(--solar-orange);
+  color: var(--solar-white);
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+/* Tabelas com tema */
+.table-hover tbody tr:hover {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(255, 107, 53, 0.1) 100%);
+}
+
+/* Badges com tema da logo */
+.badge {
+  font-weight: 600;
+  padding: 0.5em 0.75em;
+  border-radius: 8px;
+}

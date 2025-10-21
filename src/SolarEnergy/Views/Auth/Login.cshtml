@@ -1,0 +1,160 @@
+@model SolarEnergy.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Solar Energy</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/validation.css" asp-append-version="true" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="auth-body">
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <div class="col-lg-6 d-none d-lg-flex bg-solar-gradient align-items-center justify-content-center text-white">
+                <div class="text-center px-4">
+                    <div class="mb-4">
+                        <i class="fas fa-solar-panel fa-3x text-solar-orange mb-3"></i>
+                        <h2 class="fw-bold">SOLAR ENERGY</h2>
+                        <p class="lead">Acesse sua conta e gerencie sua energia solar</p>
+                    </div>
+                    
+                    <div class="features-list text-start">
+                        <div class="feature-item mb-3">
+                            <i class="fas fa-chart-line text-solar-orange me-3"></i>
+                            <span>Monitore sua produção de energia</span>
+                        </div>
+                        <div class="feature-item mb-3">
+                            <i class="fas fa-coins text-solar-orange me-3"></i>
+                            <span>Acompanhe sua economia mensal</span>
+                        </div>
+                        <div class="feature-item mb-3">
+                            <i class="fas fa-file-alt text-solar-orange me-3"></i>
+                            <span>Acesse relatórios personalizados</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 d-flex align-items-center justify-content-center">
+                <div class="auth-form-container w-100 max-width-400">
+                    <div class="text-center mb-4 d-lg-none">
+                        <i class="fas fa-solar-panel fa-2x text-solar-orange mb-2"></i>
+                        <h3>SOLAR ENERGY</h3>
+                    </div>
+                    
+                    <div class="card shadow-lg border-0">
+                        <div class="card-body p-4">
+                            <h3 class="card-title text-center mb-1 fw-bold">Bem-vindo de volta!</h3>
+                            <p class="text-center text-muted mb-4">Entre com seus dados para acessar sua conta</p>
+                            
+                            <form asp-action="Login" method="post" id="loginForm" novalidate>
+                                <div asp-validation-summary="All" class="text-danger mb-3"></div>
+                                
+                                <div class="mb-3">
+                                    <label asp-for="Email" class="form-label fw-semibold">
+                                        <i class="fas fa-envelope text-solar-orange me-1"></i>E-mail
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                        <input asp-for="Email" class="form-control" placeholder="Digite seu email" required />
+                                    </div>
+                                    <span asp-validation-for="Email" class="text-danger small"></span>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label asp-for="Password" class="form-label fw-semibold">
+                                        <i class="fas fa-lock text-solar-orange me-1"></i>Senha
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                        <input asp-for="Password" class="form-control" placeholder="Digite sua senha" required />
+                                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                            <i class="fas fa-eye" id="eyeIcon"></i>
+                                        </button>
+                                    </div>
+                                    <span asp-validation-for="Password" class="text-danger small"></span>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-6">
+                                        <div class="form-check">
+                                            <input asp-for="RememberMe" class="form-check-input" />
+                                            <label asp-for="RememberMe" class="form-check-label small">
+                                                Lembrar de mim
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <a href="#" class="text-solar-orange text-decoration-none small">Esqueceu sua senha?</a>
+                                    </div>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-solar-orange w-100 fw-semibold py-3 mb-3">
+                                    <i class="fas fa-sign-in-alt me-2"></i>ENTRAR
+                                </button>
+                            </form>
+                            
+                            <div class="text-center">
+                                <p class="mb-0">Não tem uma conta? 
+                                    <a asp-action="Register" class="text-solar-orange text-decoration-none fw-semibold">Criar conta agora</a>
+                                </p>
+                                <div class="mt-3">
+                                    <a asp-controller="Home" asp-action="Index" class="text-muted text-decoration-none small">
+                                        <i class="fas fa-arrow-left me-1"></i>Voltar ao início
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var togglePassword = document.getElementById('togglePassword');
+            var passwordField = document.getElementById('Password');
+            var eyeIcon = document.getElementById('eyeIcon');
+            
+            if (togglePassword && passwordField && eyeIcon) {
+                togglePassword.addEventListener('click', function() {
+                    if (passwordField.type === 'password') {
+                        passwordField.type = 'text';
+                        eyeIcon.classList.remove('fa-eye');
+                        eyeIcon.classList.add('fa-eye-slash');
+                    } else {
+                        passwordField.type = 'password';
+                        eyeIcon.classList.remove('fa-eye-slash');
+                        eyeIcon.classList.add('fa-eye');
+                    }
+                });
+            }
+            
+            var loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    var submitButton = this.querySelector('button[type="submit"]');
+                    if (submitButton) {
+                        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Entrando...';
+                        submitButton.disabled = true;
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
