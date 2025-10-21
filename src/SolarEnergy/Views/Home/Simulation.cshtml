@@ -1,0 +1,149 @@
+@{
+    ViewData["Title"] = "Simulador";
+}
+
+<div class="solar-page">
+    <div class="container-fluid px-4">
+        <div class="solar-page-header d-flex flex-wrap justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="solar-page-title">Simulador de Economia</h1>
+                <p class="solar-page-subtitle mb-0">Compare cenários de instalação e aluguel com base em seu consumo</p>
+            </div>
+            <div class="d-flex gap-2">
+                <div class="input-group w-auto">
+                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                    <select class="form-select">
+                        <option>Período: 30 dias</option>
+                        <option>Período: 12 meses</option>
+                        <option>Período: 5 anos</option>
+                    </select>
+                </div>
+                <button class="btn btn-outline-solar-orange">
+                    <i class="fas fa-save me-1"></i> Salvar simulação
+                </button>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-xl-4">
+                <div class="solar-card h-100">
+                    <h5 class="solar-card-title">Simulador de Instalação</h5>
+                    <form class="solar-form-grid">
+                        <div>
+                            <label class="form-label">Consumo da Rede (kWh)</label>
+                            <input type="number" class="form-control" value="3500">
+                        </div>
+                        <div>
+                            <label class="form-label">Cobertura (%)</label>
+                            <input type="number" class="form-control" value="80">
+                        </div>
+                        <div>
+                            <label class="form-label">Horizonte (anos)</label>
+                            <input type="number" class="form-control" value="10">
+                        </div>
+                        <button class="btn btn-solar-orange" type="button">Calcular</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="solar-card h-100">
+                    <h5 class="solar-card-title">Simulador de Aluguel</h5>
+                    <form class="solar-form-grid">
+                        <div>
+                            <label class="form-label">Consumo da Rede (kWh)</label>
+                            <input type="number" class="form-control" value="3100">
+                        </div>
+                        <div>
+                            <label class="form-label">Cobertura (%)</label>
+                            <input type="number" class="form-control" value="70">
+                        </div>
+                        <div>
+                            <label class="form-label">Horizonte (anos)</label>
+                            <input type="number" class="form-control" value="8">
+                        </div>
+                        <button class="btn btn-outline-solar-orange" type="button">Calcular</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="solar-card h-100">
+                    <h5 class="solar-card-title">Economia em 10 anos</h5>
+                    <div class="solar-chart-area mb-3">
+                        <div class="solar-chart-line"></div>
+                        <div class="solar-chart-label" style="left: 25%; bottom: 50%">R$ 90 mil</div>
+                        <div class="solar-chart-label" style="left: 65%; bottom: 75%">R$ 180 mil</div>
+                    </div>
+                    <div class="solar-summary-grid">
+                        <div>
+                            <span class="solar-stat-label">Valor da Instalação</span>
+                            <strong class="solar-stat-value">R$ 180.000,00</strong>
+                        </div>
+                        <div>
+                            <span class="solar-stat-label">Valor do Sistema</span>
+                            <strong class="solar-stat-value">R$ 2975,00</strong>
+                        </div>
+                        <div>
+                            <span class="solar-stat-label">Aluguel Mensal</span>
+                            <strong class="solar-stat-value">R$ 3.200,00</strong>
+                        </div>
+                        <div>
+                            <span class="solar-stat-label">Economia Total (10 anos)</span>
+                            <strong class="solar-stat-value text-solar-orange">R$ 450.000,00</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-1">
+            <div class="col-xxl-3 col-xl-6">
+                <div class="solar-card h-100">
+                    <h6 class="solar-card-title">Energia Gerada</h6>
+                    <div class="solar-indicator-card">
+                        <div>
+                            <span class="solar-indicator-label">Próximo mês</span>
+                            <strong class="solar-indicator-value">R$ 180.000</strong>
+                        </div>
+                        <div class="solar-indicator-chip bg-status-online">+18%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xxl-3 col-xl-6">
+                <div class="solar-card h-100">
+                    <h6 class="solar-card-title">Investimento</h6>
+                    <div class="solar-indicator-card">
+                        <div>
+                            <span class="solar-indicator-label">Retorno esperado</span>
+                            <strong class="solar-indicator-value">R$ 2975</strong>
+                        </div>
+                        <div class="solar-indicator-chip bg-status-warning">5.2 anos</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xxl-3 col-xl-6">
+                <div class="solar-card h-100">
+                    <h6 class="solar-card-title">Economia Mensal</h6>
+                    <div class="solar-indicator-card">
+                        <div>
+                            <span class="solar-indicator-label">Ganho esperado</span>
+                            <strong class="solar-indicator-value">R$ 2.950</strong>
+                        </div>
+                        <div class="solar-indicator-chip bg-status-alert">+22%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xxl-3 col-xl-6">
+                <div class="solar-card h-100">
+                    <h6 class="solar-card-title">Economia Total</h6>
+                    <div class="solar-indicator-card">
+                        <div>
+                            <span class="solar-indicator-label">Horizonte 10 anos</span>
+                            <strong class="solar-indicator-value">R$ 450.000</strong>
+                        </div>
+                        <div class="solar-indicator-chip bg-status-online">70%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

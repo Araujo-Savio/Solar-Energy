@@ -1,0 +1,189 @@
+@{
+    ViewData["Title"] = "Avaliações";
+}
+
+<div class="solar-page">
+    <div class="container-fluid px-4">
+        <div class="solar-page-header d-flex flex-wrap justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="solar-page-title">Avaliações</h1>
+                <p class="solar-page-subtitle mb-0">Valide propostas, documentos e reputação das campanhas</p>
+            </div>
+            <div class="d-flex gap-2">
+                <button class="btn btn-outline-solar-orange">
+                    <i class="fas fa-filter me-1"></i> Filtros avançados
+                </button>
+                <button class="btn btn-solar-orange">
+                    <i class="fas fa-plus me-1"></i> Nova campanha
+                </button>
+            </div>
+        </div>
+
+        <div class="solar-stats-grid mb-4">
+            <div class="solar-stat-card">
+                <span class="solar-stat-label">Pendentes</span>
+                <strong class="solar-stat-value">12</strong>
+            </div>
+            <div class="solar-stat-card">
+                <span class="solar-stat-label">Aguardando</span>
+                <strong class="solar-stat-value">9</strong>
+            </div>
+            <div class="solar-stat-card">
+                <span class="solar-stat-label">Finalizadas</span>
+                <strong class="solar-stat-value">25</strong>
+            </div>
+            <div class="solar-stat-card">
+                <span class="solar-stat-label">Documentos</span>
+                <strong class="solar-stat-value">32</strong>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-xl-7">
+                <div class="solar-card h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="solar-card-title mb-0">Campanhas Ativas</h5>
+                        <span class="badge bg-status-online">Atualizado agora</span>
+                    </div>
+                    <div class="solar-campaign-grid">
+                        <div>
+                            <span class="text-muted">Campanha A</span>
+                            <strong class="solar-stat-value">R$ 25.200</strong>
+                            <small class="text-muted">Leads: 200</small>
+                        </div>
+                        <div>
+                            <span class="text-muted">Campanha B</span>
+                            <strong class="solar-stat-value">R$ 19.500</strong>
+                            <small class="text-muted">Leads: 150</small>
+                        </div>
+                        <div>
+                            <span class="text-muted">Campanha C</span>
+                            <strong class="solar-stat-value">R$ 11.800</strong>
+                            <small class="text-muted">Leads: 90</small>
+                        </div>
+                        <div>
+                            <span class="text-muted">Campanha D</span>
+                            <strong class="solar-stat-value">R$ 8.200</strong>
+                            <small class="text-muted">Leads: 60</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5">
+                <div class="solar-card h-100">
+                    <h5 class="solar-card-title">Verificação de Documentos</h5>
+                    <div class="solar-documents">
+                        <div class="solar-document-item">
+                            <div>
+                                <strong>Contrato Social</strong>
+                                <span class="d-block text-muted small">Atualizado em 21/09/2029</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-outline-primary">Visualizar</button>
+                                <button class="btn btn-sm btn-outline-success">Aprovar</button>
+                            </div>
+                        </div>
+                        <div class="solar-document-checklist">
+                            <label class="form-check">
+                                <input class="form-check-input" type="checkbox" checked>
+                                <span class="form-check-label">Checklist de Compliance</span>
+                            </label>
+                            <label class="form-check">
+                                <input class="form-check-input" type="checkbox" checked>
+                                <span class="form-check-label">Contrato Social</span>
+                            </label>
+                            <label class="form-check">
+                                <input class="form-check-input" type="checkbox" checked>
+                                <span class="form-check-label">CNPJ</span>
+                            </label>
+                            <label class="form-check">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-label">Avaliar Certidões</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table solar-table mb-0 align-middle">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Avaliação</th>
+                                <th>Comentários</th>
+                                <th>Data</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>Maria Rodrigues</strong>
+                                    <span class="d-block text-muted small">Residencial</span>
+                                </td>
+                                <td>
+                                    <div class="solar-stars" aria-label="5 estrelas">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </td>
+                                <td>Ótimo serviço! Instaladores muito cuidadosos.</td>
+                                <td>25/04/2028</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary">Detalhes</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Carlos Lima</strong>
+                                    <span class="d-block text-muted small">Comercial</span>
+                                </td>
+                                <td>
+                                    <div class="solar-stars" aria-label="4 estrelas">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </td>
+                                <td>Preço acessível e ótimo suporte técnico.</td>
+                                <td>12/08/2028</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary">Detalhes</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Mariana Souza</strong>
+                                    <span class="d-block text-muted small">Residencial</span>
+                                </td>
+                                <td>
+                                    <div class="solar-stars" aria-label="5 estrelas">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </td>
+                                <td>Equipe muito profissional e entrega pontual.</td>
+                                <td>04/06/2028</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary">Detalhes</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

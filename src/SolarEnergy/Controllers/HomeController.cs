@@ -16,7 +16,43 @@ namespace SolarEnergy.Controllers
 
         public IActionResult Index()
         {
-            // Se o usu·rio est· logado, redireciona para o dashboard apropriado
+        [Authorize]
+        public IActionResult Leads()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult AdminDashboard()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Simulation()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Evaluations()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult CompanyPanel()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult UserDashboard()
+        {
+            return View();
+        }
+
+            // Se o usu√°rio est√° logado, redireciona para o dashboard apropriado
             if (User.Identity?.IsAuthenticated == true)
             {
                 return RedirectToAction("Dashboard");
@@ -28,8 +64,8 @@ namespace SolarEnergy.Controllers
         [Authorize]
         public IActionResult Dashboard()
         {
-            // Aqui vocÍ pode adicionar lÛgica para determinar qual dashboard mostrar
-            // baseado no tipo de usu·rio (Cliente, Empresa, Administrador)
+            // Aqui voc√™ pode adicionar l√≥gica para determinar qual dashboard mostrar
+            // baseado no tipo de usu√°rio (Cliente, Empresa, Administrador)
             return View();
         }
 

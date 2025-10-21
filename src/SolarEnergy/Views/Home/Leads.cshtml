@@ -1,0 +1,206 @@
+@{
+    ViewData["Title"] = "Leads";
+}
+
+<div class="solar-page">
+    <div class="container-fluid px-4">
+        <div class="solar-page-header d-flex flex-wrap justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="solar-page-title">Leads</h1>
+                <p class="solar-page-subtitle mb-0">Acompanhe o funil comercial e as oportunidades do time</p>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+                <button class="btn btn-outline-solar-orange">
+                    <i class="fas fa-file-export me-1"></i> Exportar CSV
+                </button>
+                <button class="btn btn-solar-orange">
+                    <i class="fas fa-user-plus me-1"></i> Novo Lead
+                </button>
+            </div>
+        </div>
+
+        <div class="solar-stats-grid mb-4">
+            <div class="solar-stat-card">
+                <span class="solar-stat-label">Total</span>
+                <strong class="solar-stat-value">5</strong>
+            </div>
+            <div class="solar-stat-card">
+                <span class="solar-stat-label">Novos</span>
+                <strong class="solar-stat-value">1</strong>
+            </div>
+            <div class="solar-stat-card">
+                <span class="solar-stat-label">Propostas</span>
+                <strong class="solar-stat-value">3</strong>
+            </div>
+            <div class="solar-stat-card">
+                <span class="solar-stat-label">Status</span>
+                <div class="solar-progress">
+                    <div class="solar-progress-bar" style="width: 20%"></div>
+                    <span class="solar-progress-text">20%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="solar-filters-card card border-0 shadow-sm mb-4">
+            <div class="card-body">
+                <div class="row g-3 align-items-end">
+                    <div class="col-lg-3">
+                        <label class="form-label text-muted">Buscar</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            <input type="text" class="form-control" placeholder="Nome, telefone ou cidade">
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="form-label text-muted">Status</label>
+                        <select class="form-select">
+                            <option>Todos</option>
+                            <option>Novos</option>
+                            <option>Convertidos</option>
+                            <option>Proposta enviada</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="form-label text-muted">Origem</label>
+                        <select class="form-select">
+                            <option>Todos</option>
+                            <option>Site</option>
+                            <option>Indicação</option>
+                            <option>Campanhas</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 text-lg-end">
+                        <button class="btn btn-outline-secondary me-2">Limpar Filtros</button>
+                        <button class="btn btn-solar-orange">Filtrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table solar-table mb-0 align-middle">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Contato</th>
+                                <th>Localização</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>Maria Rodrigues</strong>
+                                    <span class="d-block text-muted small">Residencial</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column">
+                                        <span><i class="fas fa-phone me-1"></i>77 99999-8888</span>
+                                        <span class="text-muted small"><i class="fas fa-envelope me-1"></i>maria@email.com</span>
+                                    </div>
+                                </td>
+                                <td>Vitória da Conquista/BA</td>
+                                <td>18/09/2029</td>
+                                <td><span class="badge solar-badge bg-status-new">Novo</span></td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-outline-primary">Ver</button>
+                                        <button class="btn btn-sm btn-outline-solar-orange">Proposta</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Carlos Lima</strong>
+                                    <span class="d-block text-muted small">Comercial</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column">
+                                        <span><i class="fas fa-phone me-1"></i>71 99999-8888</span>
+                                        <span class="text-muted small"><i class="fas fa-envelope me-1"></i>carlos@email.com</span>
+                                    </div>
+                                </td>
+                                <td>São Paulo/SP</td>
+                                <td>19/09/2029</td>
+                                <td><span class="badge solar-badge bg-status-converted">Convertido</span></td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-outline-primary">Ver</button>
+                                        <button class="btn btn-sm btn-outline-success">Contrato</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Mariana Souza</strong>
+                                    <span class="d-block text-muted small">Residencial</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column">
+                                        <span><i class="fas fa-phone me-1"></i>92 99999-8888</span>
+                                        <span class="text-muted small"><i class="fas fa-envelope me-1"></i>mariana@email.com</span>
+                                    </div>
+                                </td>
+                                <td>Manaus/AM</td>
+                                <td>15/09/2029</td>
+                                <td><span class="badge solar-badge bg-status-proposal">Proposta enviada</span></td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-outline-primary">Ver</button>
+                                        <button class="btn btn-sm btn-outline-solar-orange">Follow-up</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Ano Casteb</strong>
+                                    <span class="d-block text-muted small">Indústria</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column">
+                                        <span><i class="fas fa-phone me-1"></i>62 99999-8888</span>
+                                        <span class="text-muted small"><i class="fas fa-envelope me-1"></i>ano@email.com</span>
+                                    </div>
+                                </td>
+                                <td>Goiânia/GO</td>
+                                <td>12/09/2029</td>
+                                <td><span class="badge solar-badge bg-status-proposal">Proposta enviada</span></td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-outline-primary">Ver</button>
+                                        <button class="btn btn-sm btn-outline-secondary">Notas</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>João Carvalho</strong>
+                                    <span class="d-block text-muted small">Residencial</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column">
+                                        <span><i class="fas fa-phone me-1"></i>68 99999-8888</span>
+                                        <span class="text-muted small"><i class="fas fa-envelope me-1"></i>joao@email.com</span>
+                                    </div>
+                                </td>
+                                <td>Rio Branco/AC</td>
+                                <td>10/09/2029</td>
+                                <td><span class="badge solar-badge bg-status-converted">Convertido</span></td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-outline-primary">Ver</button>
+                                        <button class="btn btn-sm btn-outline-success">Contrato</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
