@@ -75,8 +75,8 @@ using (var scope = app.Services.CreateScope())
         var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
         
-        // Create database
-        context.Database.EnsureCreated();
+        // Apply pending migrations and ensure database schema is up-to-date
+        await context.Database.MigrateAsync();
         
         // Create roles with English names
         string[] roleNames = { "Administrator", "Company", "Client" };
