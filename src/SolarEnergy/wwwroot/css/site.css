@@ -977,3 +977,135 @@ footer .social-links a:hover {
   padding: 0.5em 0.75em;
   border-radius: 8px;
 }
+
+/* ========================================
+   Página de Perfil do Usuário
+   ======================================== */
+
+.solar-profile-page {
+  background: linear-gradient(180deg, rgba(26, 43, 61, 0.06) 0%, rgba(255, 255, 255, 1) 100%);
+  min-height: calc(100vh - 120px);
+}
+
+.solar-profile-header {
+  border-radius: 18px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.solar-profile-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(255, 107, 53, 0.35), transparent 55%);
+  opacity: 0.7;
+}
+
+.solar-profile-header > div {
+  position: relative;
+  z-index: 1;
+}
+
+.solar-profile-name {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.solar-profile-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.solar-profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.solar-profile-avatar.large {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+  border-radius: 28px;
+  border: 4px solid rgba(255, 107, 53, 0.3);
+}
+
+.solar-profile-overview {
+  border-radius: 18px;
+  padding: 1.75rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.solar-profile-meta {
+  background: rgba(26, 43, 61, 0.04);
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.solar-meta-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--solar-gray);
+  margin-bottom: 0.35rem;
+}
+
+.solar-meta-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--solar-blue-primary);
+}
+
+.bg-status-offline {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #b91c1c !important;
+}
+
+.solar-profile-page .form-label {
+  font-weight: 600;
+  color: var(--solar-blue-secondary);
+}
+
+.solar-profile-page .form-control {
+  border-radius: 12px;
+  border-color: rgba(26, 43, 61, 0.15);
+  padding: 0.75rem 1rem;
+}
+
+.solar-profile-page .form-control:focus {
+  border-color: var(--solar-orange);
+  box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.15);
+}
+
+.solar-profile-page .solar-card {
+  border-radius: 18px;
+}
+
+@media (max-width: 768px) {
+  .solar-profile-header {
+    text-align: center;
+  }
+
+  .solar-profile-header .d-flex {
+    flex-direction: column !important;
+  }
+
+  .solar-profile-avatar {
+    margin: 0 auto;
+  }
+
+  .solar-profile-header .btn {
+    width: 100%;
+  }
+}

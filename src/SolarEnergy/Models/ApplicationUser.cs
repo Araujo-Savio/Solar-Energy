@@ -22,7 +22,19 @@ namespace SolarEnergy.Models
         [StringLength(20)]
         public string? Phone { get; set; }
 
-        [Display(Name = "Tipo de Usu�rio")]
+        [Display(Name = "Localização")]
+        [StringLength(120)]
+        public string? Location { get; set; }
+
+        [Display(Name = "Foto de Perfil")]
+        [StringLength(260)]
+        public string? ProfileImagePath { get; set; } = "/images/default-profile.svg";
+
+        [Display(Name = "Data de Nascimento")]
+        [DataType(DataType.Date)]
+        public DateTime? DateOfBirth { get; set; }
+
+        [Display(Name = "Tipo de Usuário")]
         public UserType UserType { get; set; } = UserType.Client;
 
         [Display(Name = "Data de Cadastro")]
