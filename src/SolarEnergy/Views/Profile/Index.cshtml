@@ -1,0 +1,136 @@
+@model SolarEnergy.ViewModels.UserProfileViewModel
+@{
+    ViewData["Title"] = "Perfil do Usuário";
+    var profileImage = string.IsNullOrWhiteSpace(Model.ProfileImagePath)
+        ? Url.Content("~/images/default-profile.svg")
+        : Url.Content(Model.ProfileImagePath.StartsWith("/") ? "~" + Model.ProfileImagePath : Model.ProfileImagePath);
+
+    var userTypeLabel = Model.UserType switch
+    {
+        SolarEnergy.Models.UserType.Administrator => "Administrador",
+        SolarEnergy.Models.UserType.Company => "Empresa",
+        _ => "Cliente"
+    };
+}
+
+<div class="solar-page solar-profile-page">
+    <div class="container py-4">
+        <div class="solar-profile-header solar-card bg-solar-blue text-white mb-4">
+            <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="solar-profile-avatar shadow-sm">
+                        <img src="@profileImage" alt="Foto de perfil de @Model.FullName" class="img-fluid" />
+                    </div>
+                    <div>
+                        <h1 class="solar-profile-name mb-1">@Model.FullName</h1>
+                        <p class="mb-0 text-white-50">@Model.Email</p>
+                    </div>
+                </div>
+                <div class="d-flex flex-wrap gap-2">
+                    <a asp-controller="Home" asp-action="Dashboard" class="btn btn-outline-light">
+                        <i class="fas fa-arrow-left me-1"></i>Voltar
+                    </a>
+                    <button type="submit" form="profileForm" class="btn btn-solar-orange">
+                        <i class="fas fa-pen me-1"></i>Salvar alterações
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="solar-profile-overview solar-card mb-4">
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="solar-profile-meta">
+                        <span class="solar-meta-label">Cargo</span>
+                        <strong class="solar-meta-value">@userTypeLabel</strong>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="solar-profile-meta">
+                        <span class="solar-meta-label">Status</span>
+                        <div class="solar-status-pill @(Model.IsActive ? "bg-status-online" : "bg-status-offline")">
+                            @(Model.IsActive ? "Ativo" : "Inativo")
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="solar-profile-meta">
+                        <span class="solar-meta-label">Cadastro</span>
+                        <strong class="solar-meta-value">@Model.CreatedAt:dd/MM/yyyy</strong>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="solar-profile-meta">
+                        <span class="solar-meta-label">Data de Nascimento</span>
+                        <strong class="solar-meta-value">@(Model.DateOfBirth.HasValue ? Model.DateOfBirth.Value.ToString("dd/MM/yyyy") : "Não informado")</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="solar-card h-100 text-center">
+                    <div class="solar-profile-avatar large mb-3">
+                        <img src="@profileImage" alt="Foto de perfil de @Model.FullName" class="img-fluid" />
+                    </div>
+                    <p class="text-muted mb-0">Atualize a foto do seu perfil para personalizar sua experiência.</p>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="solar-card">
+                    <h2 class="solar-card-title mb-3">Informações de contato</h2>
+                    <form asp-action="Update" method="post" enctype="multipart/form-data" id="profileForm">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label asp-for="Email" class="form-label"></label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Phone" class="form-label"></label>
+                                <input asp-for="Phone" class="form-control" />
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="Location" class="form-label"></label>
+                                <input asp-for="Location" class="form-control" />
+                                <span asp-validation-for="Location" class="text-danger"></span>
+                            </div>
+                            <div class="col-12">
+                                <label asp-for="ProfileImageFile" class="form-label"></label>
+                                <input asp-for="ProfileImageFile" class="form-control" type="file" accept="image/*" />
+                                <span class="form-text d-block text-muted">Formatos suportados: JPG, PNG, GIF e SVG. Tamanho máximo recomendado de 2MB.</span>
+                                <span asp-validation-for="ProfileImageFile" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <input type="hidden" asp-for="Id" />
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="solar-card mt-4">
+            <h3 class="solar-card-title mb-3">Dados cadastrais</h3>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">CPF</label>
+                    <input class="form-control" value="@(Model.CPF ?? "Não informado")" readonly />
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">CNPJ</label>
+                    <input class="form-control" value="@(Model.CNPJ ?? "Não informado")" readonly />
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Status</label>
+                    <input class="form-control" value="@(Model.IsActive ? "Ativo" : "Inativo")" readonly />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
