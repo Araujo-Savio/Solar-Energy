@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 using SolarEnergy.Models;
 
 namespace SolarEnergy.Controllers
@@ -14,80 +15,54 @@ namespace SolarEnergy.Controllers
             _logger = logger;
         }
 
+        // Páginas públicas
+        [AllowAnonymous]
         public IActionResult Index()
         {
-        [Authorize]
-        public IActionResult Leads()
-        {
-            return View();
-        }
-
-        [Authorize]
-        public IActionResult AdminDashboard()
-        {
-            return View();
-        }
-
-        [Authorize]
-        public IActionResult Simulation()
-        {
-            return View();
-        }
-
-        [Authorize]
-        public IActionResult Evaluations()
-        {
-            return View();
-        }
-
-        [Authorize]
-        public IActionResult CompanyPanel()
-        {
-            return View();
-        }
-
-        [Authorize]
-        public IActionResult UserDashboard()
-        {
-            return View();
-        }
-
             // Se o usuário está logado, redireciona para o dashboard apropriado
             if (User.Identity?.IsAuthenticated == true)
             {
                 return RedirectToAction("Dashboard");
             }
-            
             return View();
         }
 
-        [Authorize]
-        public IActionResult Dashboard()
-        {
-            // Aqui você pode adicionar lógica para determinar qual dashboard mostrar
-            // baseado no tipo de usuário (Cliente, Empresa, Administrador)
-            return View();
-        }
+        [AllowAnonymous]
+        public IActionResult About() => View();
 
-        public IActionResult About()
-        {
-            return View();
-        }
+        [AllowAnonymous]
+        public IActionResult Contact() => View();
 
-        public IActionResult Contact()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        [AllowAnonymous]
+        public IActionResult Privacy() => View();
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [AllowAnonymous]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        // Ações protegidas (exigem login)
+        [Authorize]
+        public IActionResult Dashboard() => View();
+
+        [Authorize]
+        public IActionResult Leads() => View();
+
+        [Authorize]
+        public IActionResult AdminDashboard() => View();
+
+        [Authorize]
+        public IActionResult Simulation() => View();
+
+        [Authorize]
+        public IActionResult Evaluations() => View();
+
+        [Authorize]
+        public IActionResult CompanyPanel() => View();
+
+        [Authorize]
+        public IActionResult UserDashboard() => View();
     }
 }
