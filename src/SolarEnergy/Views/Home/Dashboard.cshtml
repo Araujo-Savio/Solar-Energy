@@ -2,6 +2,11 @@
     ViewData["Title"] = "Dashboard";
 }
 
+@{
+    var currentAction = ViewContext.RouteData.Values["Action"]?.ToString() ?? string.Empty;
+    var currentController = ViewContext.RouteData.Values["Controller"]?.ToString() ?? string.Empty;
+}
+
 <div class="container-fluid">
     <div class="row">
         <!-- Sidebar -->
@@ -13,19 +18,19 @@
                     </h5>
                 </div>
                 <nav class="nav flex-column p-3">
-                    <a class="nav-link text-white active" href="#overview">
-                        <i class="fas fa-tachometer-alt me-2"></i>Visão Geral
+                    <a class="nav-link text-white @(currentAction == "Dashboard" ? "active" : string.Empty)" asp-controller="Home" asp-action="Dashboard">
+                        <i class="fas fa-tachometer-alt me-2"></i>VisÃ£o Geral
                     </a>
-                    <a class="nav-link text-white" href="#companies">
+                    <a class="nav-link text-white @(currentAction == "Leads" ? "active" : string.Empty)" asp-controller="Home" asp-action="Leads">
                         <i class="fas fa-building me-2"></i>Empresas
                     </a>
-                    <a class="nav-link text-white" href="#quotes">
-                        <i class="fas fa-file-invoice-dollar me-2"></i>Orçamentos
+                    <a class="nav-link text-white @(currentAction == "Quotes" ? "active" : string.Empty)" asp-controller="Home" asp-action="Quotes">
+                        <i class="fas fa-file-invoice-dollar me-2"></i>OrÃ§amentos
                     </a>
-                    <a class="nav-link text-white" href="#simulator">
+                    <a class="nav-link text-white @(currentAction == "Simulation" ? "active" : string.Empty)" asp-controller="Home" asp-action="Simulation">
                         <i class="fas fa-calculator me-2"></i>Simulador
                     </a>
-                    <a class="nav-link text-white" href="#profile">
+                    <a class="nav-link text-white @(currentController == "Profile" ? "active" : string.Empty)" asp-controller="Profile" asp-action="Index">
                         <i class="fas fa-user me-2"></i>Perfil
                     </a>
                 </nav>
@@ -38,7 +43,7 @@
                 <!-- Header -->
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <div>
-                        <h2 class="text-solar-blue fw-bold mb-1">Bem-vindo, @(User.Identity?.Name ?? "Usuário")!</h2>
+                        <h2 class="text-solar-blue fw-bold mb-1">Bem-vindo, @(User.Identity?.Name ?? "UsuÃ¡rio")!</h2>
                         <p class="text-muted mb-0">Gerencie sua energia solar de forma inteligente</p>
                     </div>
                     <div class="d-flex gap-2">
@@ -46,7 +51,7 @@
                             <i class="fas fa-search me-1"></i>Buscar Empresas
                         </button>
                         <button class="btn btn-solar-orange">
-                            <i class="fas fa-plus me-1"></i>Novo Orçamento
+                            <i class="fas fa-plus me-1"></i>Novo OrÃ§amento
                         </button>
                     </div>
                 </div>
@@ -58,7 +63,7 @@
                             <div class="card-body text-center">
                                 <i class="fas fa-file-invoice text-solar-orange fa-2x mb-2"></i>
                                 <h4 class="fw-bold text-solar-blue mb-1">5</h4>
-                                <p class="text-muted mb-0 small">Orçamentos Solicitados</p>
+                                <p class="text-muted mb-0 small">OrÃ§amentos Solicitados</p>
                             </div>
                         </div>
                     </div>
@@ -85,7 +90,7 @@
                             <div class="card-body text-center">
                                 <i class="fas fa-coins text-solar-orange fa-2x mb-2"></i>
                                 <h4 class="fw-bold text-solar-blue mb-1">R$ 2.500</h4>
-                                <p class="text-muted mb-0 small">Economia Estimada/mês</p>
+                                <p class="text-muted mb-0 small">Economia Estimada/mÃªs</p>
                             </div>
                         </div>
                     </div>
@@ -106,9 +111,9 @@
                                         <i class="fas fa-file-plus"></i>
                                     </div>
                                     <div class="flex-grow-1">
-                                        <h6 class="mb-1 fw-semibold">Novo orçamento solicitado</h6>
-                                        <p class="text-muted mb-0 small">Solicitação enviada para SolarTech Solutions</p>
-                                        <small class="text-muted">Há 2 horas</small>
+                                        <h6 class="mb-1 fw-semibold">Novo orÃ§amento solicitado</h6>
+                                        <p class="text-muted mb-0 small">SolicitaÃ§Ã£o enviada para SolarTech Solutions</p>
+                                        <small class="text-muted">HÃ¡ 2 horas</small>
                                     </div>
                                 </div>
                                 <div class="activity-item d-flex align-items-center mb-3 pb-3 border-bottom">
@@ -116,7 +121,7 @@
                                         <i class="fas fa-envelope"></i>
                                     </div>
                                     <div class="flex-grow-1">
-                                        <h6 class="mb-1 fw-semibold">Orçamento recebido</h6>
+                                        <h6 class="mb-1 fw-semibold">OrÃ§amento recebido</h6>
                                         <p class="text-muted mb-0 small">Proposta de R$ 25.000 da EcoSolar Energia</p>
                                         <small class="text-muted">Ontem</small>
                                     </div>
@@ -126,9 +131,9 @@
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <div class="flex-grow-1">
-                                        <h6 class="mb-1 fw-semibold">Avaliação enviada</h6>
-                                        <p class="text-muted mb-0 small">Você avaliou a Energia Limpa SP com 5 estrelas</p>
-                                        <small class="text-muted">2 dias atrás</small>
+                                        <h6 class="mb-1 fw-semibold">AvaliaÃ§Ã£o enviada</h6>
+                                        <p class="text-muted mb-0 small">VocÃª avaliou a Energia Limpa SP com 5 estrelas</p>
+                                        <small class="text-muted">2 dias atrÃ¡s</small>
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +144,7 @@
                         <div class="card border-0 shadow-sm h-100">
                             <div class="card-header bg-white border-bottom">
                                 <h5 class="mb-0 text-solar-blue fw-bold">
-                                    <i class="fas fa-chart-pie me-2"></i>Simulação de Economia
+                                    <i class="fas fa-chart-pie me-2"></i>SimulaÃ§Ã£o de Economia
                                 </h5>
                             </div>
                             <div class="card-body text-center">
@@ -178,7 +183,7 @@
                     <div class="card-header bg-white border-bottom">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="mb-0 text-solar-blue fw-bold">
-                                <i class="fas fa-file-invoice-dollar me-2"></i>Orçamentos Recentes
+                                <i class="fas fa-file-invoice-dollar me-2"></i>OrÃ§amentos Recentes
                             </h5>
                             <a href="#" class="btn btn-sm btn-outline-solar-orange">Ver Todos</a>
                         </div>
@@ -190,10 +195,10 @@
                                     <tr>
                                         <th>Empresa</th>
                                         <th>Valor</th>
-                                        <th>Potência</th>
+                                        <th>PotÃªncia</th>
                                         <th>Status</th>
                                         <th>Data</th>
-                                        <th>Ações</th>
+                                        <th>AÃ§Ãµes</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -275,7 +280,7 @@
 
 @section Scripts {
     <script>
-        // Simulação do progresso circular
+        // SimulaÃ§Ã£o do progresso circular
         document.addEventListener('DOMContentLoaded', function() {
             const progressElements = document.querySelectorAll('.circle-progress');
             progressElements.forEach(element => {

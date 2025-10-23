@@ -22,6 +22,14 @@ namespace SolarEnergy.Data
                 entity.Property(e => e.CPF).HasMaxLength(14);
                 entity.Property(e => e.CNPJ).HasMaxLength(18);
                 entity.Property(e => e.Phone).HasMaxLength(20);
+                entity.Property(e => e.CompanyLegalName).HasMaxLength(120);
+                entity.Property(e => e.CompanyTradeName).HasMaxLength(120);
+                entity.Property(e => e.StateRegistration).HasMaxLength(30);
+                entity.Property(e => e.CompanyPhone).HasMaxLength(20);
+                entity.Property(e => e.CompanyWebsite).HasMaxLength(200);
+                entity.Property(e => e.CompanyDescription).HasMaxLength(500);
+                entity.Property(e => e.ResponsibleName).HasMaxLength(100);
+                entity.Property(e => e.ResponsibleCPF).HasMaxLength(14);
                 entity.Property(e => e.Location).HasMaxLength(120);
                 entity.Property(e => e.ProfileImagePath).HasMaxLength(260);
 

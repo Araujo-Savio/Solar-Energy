@@ -60,6 +60,9 @@ namespace SolarEnergy.Controllers
         public IActionResult Evaluations() => View();
 
         [Authorize]
+        public IActionResult Quotes() => View();
+
+        [Authorize]
         public IActionResult CompanyPanel() => View();
 
         [Authorize]
