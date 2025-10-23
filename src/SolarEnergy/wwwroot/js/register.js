@@ -143,25 +143,54 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 
+    function formatCpf(value) {
+        const digits = value.replace(/\D/g, '').slice(0, 11);
+        let formatted = '';
+
+        for (let i = 0; i < digits.length; i++) {
+            if (i === 3 || i === 6) {
+                formatted += '.';
+            }
+            if (i === 9) {
+                formatted += '-';
+            }
+            formatted += digits[i];
+        }
+
+        return formatted;
+    }
+
+    function formatCnpj(value) {
+        const digits = value.replace(/\D/g, '').slice(0, 14);
+        let formatted = '';
+
+        for (let i = 0; i < digits.length; i++) {
+            if (i === 2 || i === 5) {
+                formatted += '.';
+            }
+            if (i === 8) {
+                formatted += '/';
+            }
+            if (i === 12) {
+                formatted += '-';
+            }
+            formatted += digits[i];
+        }
+
+        return formatted;
+    }
+
     function applyCpfMask(input) {
         input.addEventListener('input', function(e) {
             if (input.disabled) return;
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length <= 11) {
-                value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-                e.target.value = value;
-            }
+            e.target.value = formatCpf(e.target.value);
         });
     }
 
     function applyCnpjMask(input) {
         input.addEventListener('input', function(e) {
             if (input.disabled) return;
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length <= 14) {
-                value = value.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
-                e.target.value = value;
-            }
+            e.target.value = formatCnpj(e.target.value);
         });
     }
 
