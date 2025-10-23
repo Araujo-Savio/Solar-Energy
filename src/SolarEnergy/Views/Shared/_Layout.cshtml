@@ -10,11 +10,17 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+@{
+    var currentAction = ViewContext.RouteData.Values["Action"]?.ToString() ?? string.Empty;
+    var currentController = ViewContext.RouteData.Values["Controller"]?.ToString() ?? string.Empty;
+    var platformActions = new[] { "Leads", "AdminDashboard", "Simulation", "Evaluations", "Quotes", "CompanyPanel", "UserDashboard" };
+    var isPlatformActive = System.Array.IndexOf(platformActions, currentAction) >= 0;
+}
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-solar-blue shadow-sm">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
-                    <i class="fas fa-solar-panel me-2 text-solar-orange"></i>
+                    <img src="~/images/solar-energy-logo.svg" alt="Solar Energy" class="navbar-logo me-2" />
                     <span class="fw-bold">SOLAR ENERGY</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -23,38 +29,39 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Index">
+                            <a class="nav-link @(currentController == "Home" && currentAction == "Index" ? "active" : string.Empty)" asp-controller="Home" asp-action="Index">
                                 <i class="fas fa-home me-1"></i>Início
                             </a>
                         </li>
                         @if (User.Identity?.IsAuthenticated == true)
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Home" asp-action="Dashboard">
+                                <a class="nav-link @(currentController == "Home" && currentAction == "Dashboard" ? "active" : string.Empty)" asp-controller="Home" asp-action="Dashboard">
                                     <i class="fas fa-tachometer-alt me-1"></i>Dashboard
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <a class="nav-link dropdown-toggle @(isPlatformActive ? "active" : string.Empty)" href="#" role="button" data-bs-toggle="dropdown">
                                     <i class="fas fa-th-large me-1"></i>Plataforma
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item" asp-controller="Home" asp-action="Leads"><i class="fas fa-users me-2"></i>Leads</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Home" asp-action="AdminDashboard"><i class="fas fa-shield-alt me-2"></i>Admin</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Home" asp-action="Simulation"><i class="fas fa-calculator me-2"></i>Simulador</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Home" asp-action="Evaluations"><i class="fas fa-star-half-alt me-2"></i>Avaliações</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Home" asp-action="CompanyPanel"><i class="fas fa-building me-2"></i>Painel da Empresa</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Home" asp-action="UserDashboard"><i class="fas fa-user-astronaut me-2"></i>Dashboard Usuário</a></li>
+                                    <li><a class="dropdown-item @(currentAction == "Leads" ? "active" : string.Empty)" asp-controller="Home" asp-action="Leads"><i class="fas fa-users me-2"></i>Leads</a></li>
+                                    <li><a class="dropdown-item @(currentAction == "AdminDashboard" ? "active" : string.Empty)" asp-controller="Home" asp-action="AdminDashboard"><i class="fas fa-shield-alt me-2"></i>Admin</a></li>
+                                    <li><a class="dropdown-item @(currentAction == "Simulation" ? "active" : string.Empty)" asp-controller="Home" asp-action="Simulation"><i class="fas fa-calculator me-2"></i>Simulador</a></li>
+                                    <li><a class="dropdown-item @(currentAction == "Quotes" ? "active" : string.Empty)" asp-controller="Home" asp-action="Quotes"><i class="fas fa-file-invoice-dollar me-2"></i>Orçamentos</a></li>
+                                    <li><a class="dropdown-item @(currentAction == "Evaluations" ? "active" : string.Empty)" asp-controller="Home" asp-action="Evaluations"><i class="fas fa-star-half-alt me-2"></i>Avaliações</a></li>
+                                    <li><a class="dropdown-item @(currentAction == "CompanyPanel" ? "active" : string.Empty)" asp-controller="Home" asp-action="CompanyPanel"><i class="fas fa-building me-2"></i>Painel da Empresa</a></li>
+                                    <li><a class="dropdown-item @(currentAction == "UserDashboard" ? "active" : string.Empty)" asp-controller="Home" asp-action="UserDashboard"><i class="fas fa-user-astronaut me-2"></i>Dashboard Usuário</a></li>
                                 </ul>
                             </li>
                         }
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="About">
+                            <a class="nav-link @(currentController == "Home" && currentAction == "About" ? "active" : string.Empty)" asp-controller="Home" asp-action="About">
                                 <i class="fas fa-info-circle me-1"></i>Sobre
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Contact">
+                            <a class="nav-link @(currentController == "Home" && currentAction == "Contact" ? "active" : string.Empty)" asp-controller="Home" asp-action="Contact">
                                 <i class="fas fa-envelope me-1"></i>Contato
                             </a>
                         </li>

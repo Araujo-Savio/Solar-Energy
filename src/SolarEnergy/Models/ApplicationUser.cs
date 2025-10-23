@@ -22,6 +22,38 @@ namespace SolarEnergy.Models
         [StringLength(20)]
         public string? Phone { get; set; }
 
+        [Display(Name = "Razão Social")]
+        [StringLength(120)]
+        public string? CompanyLegalName { get; set; }
+
+        [Display(Name = "Nome Fantasia")]
+        [StringLength(120)]
+        public string? CompanyTradeName { get; set; }
+
+        [Display(Name = "Inscrição Estadual")]
+        [StringLength(30)]
+        public string? StateRegistration { get; set; }
+
+        [Display(Name = "Telefone Comercial")]
+        [StringLength(20)]
+        public string? CompanyPhone { get; set; }
+
+        [Display(Name = "Site da Empresa")]
+        [StringLength(200)]
+        public string? CompanyWebsite { get; set; }
+
+        [Display(Name = "Descrição da Empresa")]
+        [StringLength(500)]
+        public string? CompanyDescription { get; set; }
+
+        [Display(Name = "Nome do Responsável")]
+        [StringLength(100)]
+        public string? ResponsibleName { get; set; }
+
+        [Display(Name = "CPF do Responsável")]
+        [StringLength(14)]
+        public string? ResponsibleCPF { get; set; }
+
         [Display(Name = "Localização")]
         [StringLength(120)]
         public string? Location { get; set; }

@@ -63,7 +63,7 @@ namespace SolarEnergy.Controllers
 
             if (result.IsNotAllowed)
             {
-                ModelState.AddModelError(string.Empty, "Login não permitido. Verifique se sua conta foi confirmada.");
+                ModelState.AddModelError(string.Empty, "Login nÃ£o permitido. Verifique se sua conta foi confirmada.");
                 return View(model);
             }
 
@@ -91,19 +91,57 @@ namespace SolarEnergy.Controllers
             {
                 if (string.IsNullOrEmpty(model.CNPJ))
                 {
-                    ModelState.AddModelError("CNPJ", "CNPJ é obrigatório para empresas.");
+                    ModelState.AddModelError("CNPJ", "CNPJ Ã© obrigatÃ³rio para empresas.");
                     return View(model);
                 }
-                
+
                 // Check if CNPJ already exists
                 var existingUserWithCNPJ = await _userManager.Users
                     .FirstOrDefaultAsync(u => u.CNPJ == model.CNPJ);
                 if (existingUserWithCNPJ != null)
                 {
-                    ModelState.AddModelError("CNPJ", "Este CNPJ já está cadastrado em nosso sistema.");
+                    ModelState.AddModelError("CNPJ", "Este CNPJ jÃ¡ estÃ¡ cadastrado em nosso sistema.");
                     return View(model);
                 }
-                
+
+                var missingFields = false;
+                if (string.IsNullOrWhiteSpace(model.CompanyLegalName))
+                {
+                    ModelState.AddModelError("CompanyLegalName", "Informe a razÃ£o social da empresa.");
+                    missingFields = true;
+                }
+                if (string.IsNullOrWhiteSpace(model.CompanyTradeName))
+                {
+                    ModelState.AddModelError("CompanyTradeName", "Informe o nome fantasia da empresa.");
+                    missingFields = true;
+                }
+                if (string.IsNullOrWhiteSpace(model.CompanyPhone))
+                {
+                    ModelState.AddModelError("CompanyPhone", "Informe um telefone comercial para contato.");
+                    missingFields = true;
+                }
+                if (string.IsNullOrWhiteSpace(model.ResponsibleName))
+                {
+                    ModelState.AddModelError("ResponsibleName", "Informe o responsÃ¡vel comercial pela empresa.");
+                    missingFields = true;
+                }
+                if (string.IsNullOrWhiteSpace(model.ResponsibleCPF))
+                {
+                    ModelState.AddModelError("ResponsibleCPF", "Informe o CPF do responsÃ¡vel comercial.");
+                    missingFields = true;
+                }
+
+                if (missingFields)
+                {
+                    return View(model);
+                }
+
+                if (string.IsNullOrWhiteSpace(model.FullName))
+                {
+                    model.FullName = model.ResponsibleName ?? model.CompanyLegalName ?? string.Empty;
+                }
+
+                model.Phone = model.CompanyPhone;
                 // Clear CPF if filled by mistake
                 model.CPF = null;
             }
@@ -111,21 +149,29 @@ namespace SolarEnergy.Controllers
             {
                 if (string.IsNullOrEmpty(model.CPF))
                 {
-                    ModelState.AddModelError("CPF", "CPF é obrigatório para consumidores.");
+                    ModelState.AddModelError("CPF", "CPF Ã© obrigatÃ³rio para consumidores.");
                     return View(model);
                 }
-                
+
                 // Check if CPF already exists
                 var existingUserWithCPF = await _userManager.Users
                     .FirstOrDefaultAsync(u => u.CPF == model.CPF);
                 if (existingUserWithCPF != null)
                 {
-                    ModelState.AddModelError("CPF", "Este CPF já está cadastrado em nosso sistema.");
+                    ModelState.AddModelError("CPF", "Este CPF jÃ¡ estÃ¡ cadastrado em nosso sistema.");
                     return View(model);
                 }
-                
+
                 // Clear CNPJ if filled by mistake
                 model.CNPJ = null;
+                model.CompanyLegalName = null;
+                model.CompanyTradeName = null;
+                model.CompanyPhone = null;
+                model.CompanyWebsite = null;
+                model.CompanyDescription = null;
+                model.ResponsibleName = null;
+                model.ResponsibleCPF = null;
+                model.StateRegistration = null;
             }
 
             var user = new ApplicationUser
@@ -137,6 +183,14 @@ namespace SolarEnergy.Controllers
                 CNPJ = model.CNPJ,
                 Phone = model.Phone,
                 PhoneNumber = model.Phone,
+                CompanyLegalName = model.CompanyLegalName,
+                CompanyTradeName = model.CompanyTradeName,
+                StateRegistration = model.StateRegistration,
+                CompanyPhone = model.CompanyPhone,
+                CompanyWebsite = model.CompanyWebsite,
+                CompanyDescription = model.CompanyDescription,
+                ResponsibleName = model.ResponsibleName,
+                ResponsibleCPF = model.ResponsibleCPF,
                 UserType = model.UserType,
                 CreatedAt = DateTime.Now,
                 IsActive = true
@@ -163,7 +217,7 @@ namespace SolarEnergy.Controllers
                 }
 
                 // Show success message
-                TempData["SuccessMessage"] = "Conta criada com sucesso! Bem-vindo à Solar Energy.";
+                TempData["SuccessMessage"] = "Conta criada com sucesso! Bem-vindo Ã  Solar Energy.";
                 
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 return RedirectToAction("Index", "Home");
@@ -174,12 +228,12 @@ namespace SolarEnergy.Controllers
             {
                 string friendlyMessage = error.Code switch
                 {
-                    "DuplicateEmail" => "Este email já está cadastrado. Tente fazer login ou use outro email.",
-                    "InvalidEmail" => "Por favor, insira um email válido.",
+                    "DuplicateEmail" => "Este email jÃ¡ estÃ¡ cadastrado. Tente fazer login ou use outro email.",
+                    "InvalidEmail" => "Por favor, insira um email vÃ¡lido.",
                     "PasswordTooShort" => "A senha deve ter pelo menos 8 caracteres.",
-                    "PasswordRequiresDigit" => "A senha deve conter pelo menos um número.",
-                    "PasswordRequiresLower" => "A senha deve conter pelo menos uma letra minúscula.",
-                    "PasswordRequiresUpper" => "A senha deve conter pelo menos uma letra maiúscula.",
+                    "PasswordRequiresDigit" => "A senha deve conter pelo menos um nÃºmero.",
+                    "PasswordRequiresLower" => "A senha deve conter pelo menos uma letra minÃºscula.",
+                    "PasswordRequiresUpper" => "A senha deve conter pelo menos uma letra maiÃºscula.",
                     "PasswordRequiresNonAlphanumeric" => "A senha deve conter pelo menos um caractere especial.",
                     _ => error.Description
                 };
@@ -196,7 +250,7 @@ namespace SolarEnergy.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
-            TempData["InfoMessage"] = "Você foi desconectado com sucesso.";
+            TempData["InfoMessage"] = "VocÃª foi desconectado com sucesso.";
             return RedirectToAction("Index", "Home");
         }
 
