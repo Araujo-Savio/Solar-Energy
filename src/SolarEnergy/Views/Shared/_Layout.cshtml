@@ -13,8 +13,6 @@
 @{
     var currentAction = ViewContext.RouteData.Values["Action"]?.ToString() ?? string.Empty;
     var currentController = ViewContext.RouteData.Values["Controller"]?.ToString() ?? string.Empty;
-    var platformActions = new[] { "Dashboard", "CompanyRedirect", "Leads", "AdminDashboard", "Simulation", "Evaluations", "Quotes", "CompanyPanel", "UserDashboard" };
-    var isPlatformActive = System.Array.IndexOf(platformActions, currentAction) >= 0;
     var isAuthenticated = User.Identity?.IsAuthenticated == true;
     var isCompany = User.IsInRole("Company");
     var isAdmin = User.IsInRole("Administrator");
@@ -44,31 +42,60 @@
                                     <i class="fas fa-search me-1"></i>Buscar Empresas
                                 </a>
                             </li>
-                            <li class="nav-item dropdown platform-dropdown">
-                                <a class="nav-link dropdown-toggle @(isPlatformActive ? "active" : string.Empty)" href="#" role="button" data-bs-toggle="dropdown" aria-label="Abrir menu da plataforma">
-                                    <i class="fas fa-ellipsis-h"></i>
+                            <li class="nav-item">
+                                <a class="nav-link @(currentAction == "Dashboard" ? "active" : string.Empty)" asp-controller="Home" asp-action="Dashboard">
+                                    <i class="fas fa-tachometer-alt me-1"></i>Visão Geral
                                 </a>
-                                <ul class="dropdown-menu platform-dropdown-menu shadow">
-                                    <li><a class="dropdown-item @(currentAction == "Dashboard" ? "active" : string.Empty)" asp-controller="Home" asp-action="Dashboard"><i class="fas fa-tachometer-alt"></i>Visão Geral</a></li>
-                                    <li><a class="dropdown-item @(currentAction == "Quotes" ? "active" : string.Empty)" asp-controller="Home" asp-action="Quotes"><i class="fas fa-file-invoice-dollar"></i>Orçamentos</a></li>
-                                    <li><a class="dropdown-item @(currentAction == "Simulation" ? "active" : string.Empty)" asp-controller="Home" asp-action="Simulation"><i class="fas fa-calculator"></i>Simulador</a></li>
-                                    <li><a class="dropdown-item @(currentAction == "Evaluations" ? "active" : string.Empty)" asp-controller="Home" asp-action="Evaluations"><i class="fas fa-star-half-alt"></i>Avaliações</a></li>
-                                    <li><a class="dropdown-item @(currentAction == "Leads" ? "active" : string.Empty)" asp-controller="Home" asp-action="Leads"><i class="fas fa-users"></i>Leads</a></li>
-                                    @if (isCompany)
-                                    {
-                                        <li><a class="dropdown-item @(currentAction == "CompanyPanel" ? "active" : string.Empty)" asp-controller="Home" asp-action="CompanyPanel"><i class="fas fa-building-columns"></i>Painel da Empresa</a></li>
-                                        <li><a class="dropdown-item @(currentAction == "CompanyRedirect" ? "active" : string.Empty)" asp-controller="Home" asp-action="CompanyRedirect"><i class="fas fa-route"></i>Redirecionamentos</a></li>
-                                    }
-                                    @if (isClient)
-                                    {
-                                        <li><a class="dropdown-item @(currentAction == "UserDashboard" ? "active" : string.Empty)" asp-controller="Home" asp-action="UserDashboard"><i class="fas fa-user-astronaut"></i>Dashboard Usuário</a></li>
-                                    }
-                                    @if (isAdmin)
-                                    {
-                                        <li><a class="dropdown-item @(currentAction == "AdminDashboard" ? "active" : string.Empty)" asp-controller="Home" asp-action="AdminDashboard"><i class="fas fa-shield-alt"></i>Admin</a></li>
-                                    }
-                                </ul>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(currentAction == "Quotes" ? "active" : string.Empty)" asp-controller="Home" asp-action="Quotes">
+                                    <i class="fas fa-file-invoice-dollar me-1"></i>Orçamentos
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(currentAction == "Simulation" ? "active" : string.Empty)" asp-controller="Home" asp-action="Simulation">
+                                    <i class="fas fa-calculator me-1"></i>Simulador
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(currentAction == "Evaluations" ? "active" : string.Empty)" asp-controller="Home" asp-action="Evaluations">
+                                    <i class="fas fa-star-half-alt me-1"></i>Avaliações
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(currentAction == "Leads" ? "active" : string.Empty)" asp-controller="Home" asp-action="Leads">
+                                    <i class="fas fa-users me-1"></i>Leads
+                                </a>
+                            </li>
+                            @if (isCompany)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link @(currentAction == "CompanyPanel" ? "active" : string.Empty)" asp-controller="Home" asp-action="CompanyPanel">
+                                        <i class="fas fa-building-columns me-1"></i>Painel da Empresa
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @(currentAction == "CompanyRedirect" ? "active" : string.Empty)" asp-controller="Home" asp-action="CompanyRedirect">
+                                        <i class="fas fa-route me-1"></i>Redirecionamentos
+                                    </a>
+                                </li>
+                            }
+                            @if (isClient)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link @(currentAction == "UserDashboard" ? "active" : string.Empty)" asp-controller="Home" asp-action="UserDashboard">
+                                        <i class="fas fa-user-astronaut me-1"></i>Dashboard Usuário
+                                    </a>
+                                </li>
+                            }
+                            @if (isAdmin)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link @(currentAction == "AdminDashboard" ? "active" : string.Empty)" asp-controller="Home" asp-action="AdminDashboard">
+                                        <i class="fas fa-shield-alt me-1"></i>Admin
+                                    </a>
+                                </li>
+                            }
                         }
                     </ul>
                     <ul class="navbar-nav">
