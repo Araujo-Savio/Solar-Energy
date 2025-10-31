@@ -1,0 +1,88 @@
+@using System.Linq
+@model SolarEnergy.ViewModels.CompanySearchViewModel
+@{
+    ViewData["Title"] = "Buscar Empresas";
+}
+
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge bg-solar-orange bg-opacity-75 text-uppercase fw-semibold px-3 py-2">Encontre a parceira ideal</span>
+            <h1 class="display-6 text-solar-blue fw-bold mt-3">Busque empresas especializadas em energia solar</h1>
+            <p class="text-muted lead">Pesquise por nome, cidade ou especialidade para encontrar empresas cadastradas na plataforma.</p>
+        </div>
+
+        <form method="get" class="row g-2 justify-content-center mb-4">
+            <div class="col-12 col-lg-6">
+                <div class="input-group input-group-lg shadow-sm">
+                    <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-solar-orange"></i></span>
+                    <input type="text" class="form-control border-start-0" name="term" value="@Model.SearchTerm" placeholder="Busque por nome da empresa ou localização" />
+                </div>
+            </div>
+            <div class="col-auto d-flex align-items-center">
+                <button type="submit" class="btn btn-solar-orange btn-lg px-4">
+                    <i class="fas fa-search me-2"></i>Pesquisar
+                </button>
+            </div>
+        </form>
+
+        <div class="row g-4">
+            @if (Model.Companies.Any())
+            {
+                foreach (var company in Model.Companies)
+                {
+                    <div class="col-12 col-md-6 col-xl-4">
+                        <div class="card h-100 border-0 shadow-sm company-card">
+                            <div class="card-body d-flex flex-column">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <h5 class="card-title text-solar-blue fw-bold mb-0">@company.Name</h5>
+                                    <span class="badge bg-solar-orange bg-opacity-75 text-white">Empresa</span>
+                                </div>
+                                @if (!string.IsNullOrWhiteSpace(company.Description))
+                                {
+                                    <p class="text-muted small mb-3">@company.Description</p>
+                                }
+                                <ul class="list-unstyled mb-4 small text-muted flex-grow-1">
+                                    @if (!string.IsNullOrWhiteSpace(company.Location))
+                                    {
+                                        <li class="mb-2"><i class="fas fa-map-marker-alt text-solar-orange me-2"></i>@company.Location</li>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(company.Phone))
+                                    {
+                                        <li class="mb-2"><i class="fas fa-phone text-solar-orange me-2"></i>@company.Phone</li>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(company.Website))
+                                    {
+                                        <li class="mb-2"><i class="fas fa-globe text-solar-orange me-2"></i><a href="@company.Website" target="_blank" class="text-decoration-none">@company.Website</a></li>
+                                    }
+                                </ul>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a class="btn btn-sm btn-solar-orange flex-grow-1" asp-controller="Home" asp-action="Quotes">
+                                        <i class="fas fa-file-signature me-1"></i>Solicitar orçamento
+                                    </a>
+                                    <a class="btn btn-sm btn-outline-solar-orange" asp-controller="Home" asp-action="Evaluations">
+                                        <i class="fas fa-star me-1"></i>Ver avaliações
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body text-center py-5">
+                            <div class="mb-3">
+                                <i class="fas fa-search-minus fa-3x text-solar-orange"></i>
+                            </div>
+                            <h4 class="text-solar-blue fw-bold">Nenhuma empresa encontrada</h4>
+                            <p class="text-muted mb-0">Tente ajustar os termos de busca para encontrar novas empresas.</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

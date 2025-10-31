@@ -176,6 +176,72 @@ body {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.platform-dropdown > .nav-link {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9) !important;
+  transition: all 0.3s ease;
+}
+
+.platform-dropdown > .nav-link:hover,
+.platform-dropdown > .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--solar-orange) !important;
+}
+
+.platform-dropdown-menu {
+  background: rgba(18, 29, 41, 0.98);
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  border-radius: 16px;
+  padding: 0.75rem 0;
+  min-width: 16rem;
+  z-index: 2000;
+}
+
+.platform-dropdown-menu .dropdown-item {
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.platform-dropdown-menu .dropdown-item i {
+  width: 1.25rem;
+  text-align: center;
+}
+
+.platform-dropdown-menu .dropdown-item:hover,
+.platform-dropdown-menu .dropdown-item.active {
+  background-color: rgba(255, 107, 53, 0.2);
+  color: var(--solar-white);
+}
+
+.footer-links a {
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.footer-links a:hover {
+  opacity: 0.75;
+}
+
+.company-card {
+  border-radius: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.company-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(26, 43, 61, 0.15);
+}
+
 /* Sidebar navigation */
 .sidebar .nav-link {
   position: relative;

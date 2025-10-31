@@ -51,7 +51,8 @@ namespace SolarEnergy.Controllers
             if (result.Succeeded)
             {
                 _logger.LogInformation("User {Email} logged in successfully.", model.Email);
-                return RedirectToLocal(returnUrl);
+                var loggedUser = await _userManager.FindByEmailAsync(model.Email);
+                return await RedirectAfterLoginAsync(returnUrl, loggedUser);
             }
 
             if (result.IsLockedOut)
@@ -220,7 +221,7 @@ namespace SolarEnergy.Controllers
                 TempData["SuccessMessage"] = "Conta criada com sucesso! Bem-vindo à Solar Energy.";
                 
                 await _signInManager.SignInAsync(user, isPersistent: false);
-                return RedirectToAction("Index", "Home");
+                return await RedirectAfterLoginAsync(null, user);
             }
 
             // Translate Identity errors to more friendly messages
@@ -254,16 +255,26 @@ namespace SolarEnergy.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        private IActionResult RedirectToLocal(string? returnUrl)
+        private Task<IActionResult> RedirectAfterLoginAsync(string? returnUrl, ApplicationUser? user)
         {
-            if (Url.IsLocalUrl(returnUrl))
+            if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
             {
-                return Redirect(returnUrl);
+                return Task.FromResult<IActionResult>(Redirect(returnUrl));
             }
-            else
+
+            if (user == null)
             {
-                return RedirectToAction("Index", "Home");
+                return Task.FromResult<IActionResult>(RedirectToAction("Index", "Home"));
             }
+
+            IActionResult destination = user.UserType switch
+            {
+                UserType.Company => RedirectToAction("CompanyRedirect", "Home"),
+                UserType.Administrator => RedirectToAction("AdminDashboard", "Home"),
+                _ => RedirectToAction("SearchCompanies", "Home")
+            };
+
+            return Task.FromResult(destination);
         }
     }
 }
